@@ -5,7 +5,7 @@
 
     let nftViewer, image;
     let showUSDZ = false;
-    let status = 'Click for 3D';
+    let status = 'Click Image To View in 3D';
     onMount(() => {
         console.log("Component has mounted");
 
@@ -46,9 +46,6 @@
             // The href is empty or is the same as the current URL
             // Stop the click event from doing anything
             event.preventDefault();
-            console.log(' no download ')
-        } else {
-            console.log('event.target.href: ',event.target.href);
         }
     }
 
@@ -60,13 +57,9 @@
             containerId: 'nft-viewer',
             hideElOnLoad: 'nft-preview-img'
   		}
-		  console.log('show 3d');
-          console.log(nftViewer.loadModel);
-          console.log(params);
-          
+
       		nftViewer.loadModel(params).then(async (item, model, pos)=>{
 			
-			console.log('3D loaded?')
             nftViewer.start3D();
             status = 'Generating QuickLook';
 
@@ -75,7 +68,7 @@
             const blob = new Blob( [ arraybuffer ], { type: 'application/octet-stream' } );
             let link = document.getElementById( 'usdzlink' );
             link.href = URL.createObjectURL( blob );
-            status = 'QuickLook Ready';
+            status = 'QuickLook Ready: Click Image To View';
 
 
                   
